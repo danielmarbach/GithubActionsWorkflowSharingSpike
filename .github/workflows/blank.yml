@@ -21,12 +21,12 @@ jobs:
     steps:
         - name: Run a one-line script
           run: |
-            echo Hello world! | gpg --quiet --symmetric --cipher-algo AES256 --batch --yes --passphrase '${{ secrets.PASSPHRASE }}' --output my_file.txt
+            echo Hello world! | gpg --quiet --symmetric --cipher-algo AES256 --batch --yes --passphrase '${{ secrets.PASSPHRASE }}' --output my_file.txt.gpg
         - name: 'Upload Artifact'
           uses: actions/upload-artifact@v2
           with:
             name: my-artifact
-            path: my_file.txt
+            path: my_file.txt.gpg
             retention-days: 1
   build:
     # The type of runner that the job will run on
