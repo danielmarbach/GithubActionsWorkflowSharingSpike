@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Run a one-line script
-          run: echo Hello, world!
+          run: echo Setup
         - name: 'Upload Artifact'
           uses: actions/upload-artifact@v2
           with:
@@ -51,6 +51,8 @@ jobs:
   cleanup:
     name: Cleanup
     runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: [setup, build]
     steps:
         - name: Run a one-line script
-          run: echo Hello, world!
+          run: echo Cleanup
