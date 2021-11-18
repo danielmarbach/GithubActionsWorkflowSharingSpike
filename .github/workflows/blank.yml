@@ -57,6 +57,7 @@ jobs:
       - name: Run tests
         env:
           SomeEnv: ${{ steps.prepare.outputs.content }}          
+        run: echo "Run tests" 
   cleanup:
     name: Cleanup
     runs-on: ubuntu-latest
