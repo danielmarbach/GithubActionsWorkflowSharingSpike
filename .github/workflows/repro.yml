@@ -22,6 +22,7 @@ jobs:
     steps:
         - name: Setup secret
           id: setup-secret
+          shell: pwsh
           run: |
             $secret = "SuperSecret"
             echo "::add-mask::$secret"
@@ -32,6 +33,7 @@ jobs:
     needs: setup
     steps:
       - name: Run tests
+        shell: pwsh
         env:
           SomeEnv: ${{ needs.prepare.outputs.content }}          
         run: echo ${{ needs.prepare.outputs.content }} 
