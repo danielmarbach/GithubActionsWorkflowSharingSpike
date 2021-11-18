@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Run a one-line script
-          run: echo Setup
+          run: echo Hello world! > my_file.txt
         - name: 'Upload Artifact'
           uses: actions/upload-artifact@v2
           with:
@@ -42,12 +42,12 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
       - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        run: cat my_file.txt
   cleanup:
     name: Cleanup
     runs-on: ubuntu-latest
