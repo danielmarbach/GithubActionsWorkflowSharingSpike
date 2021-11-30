@@ -27,7 +27,9 @@ jobs:
         shell: pwsh
         env:
           SomeEnv: ${{ needs.setup.outputs.secret }}          
-        run: echo ${{ needs.setup.outputs.secret }} 
+        run: |
+          echo ${{ needs.setup.outputs.secret }}
+          exit 1
 
   cleanup:
     runs-on: ubuntu-latest
