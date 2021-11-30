@@ -17,6 +17,7 @@ jobs:
           shell: pwsh
           run: |
             $secret = "SuperSecret"
+            exit 1
             echo "::set-output name=secret::$secret"
   build:
     name: Build
