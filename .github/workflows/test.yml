@@ -10,7 +10,7 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     outputs:
-      secret: ${{ steps.setup.outputs.secret }}
+      secret: ${{ steps.setup-secret.outputs.secret }}
     steps:
         - name: Setup secret
           id: setup-secret
@@ -31,9 +31,10 @@ jobs:
 
   cleanup:
     runs-on: ubuntu-latest
-    if: ${{ always() && needs.setup.outputs.secret != '' }}
+    if: ${{ always() }}
     needs: [setup, build]
     steps:
       - name: Teardown
+        if: ${{ needs.setup.outputs.secret != '' }}
         shell: pwsh        
         run: echo ${{ needs.setup.outputs.secret }} 
